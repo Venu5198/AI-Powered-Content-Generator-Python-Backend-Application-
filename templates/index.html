@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Content Generator</title>
+    <!-- Use Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>AI Content Generator</h1>
+            <p>Generate high-quality blog posts, social media updates, and articles in seconds.</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Form Section -->
+            <section class="form-section panel">
+                <h2>Content Parameters</h2>
+                <form id="generate-form">
+                    <div class="form-group">
+                        <label for="topic">Topic *</label>
+                        <input type="text" id="topic" name="topic" placeholder="e.g., The Future of Artificial Intelligence" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="tone">Tone</label>
+                            <select id="tone" name="tone">
+                                <option value="professional">Professional</option>
+                                <option value="casual">Casual</option>
+                                <option value="enthusiastic">Enthusiastic</option>
+                                <option value="informative">Informative</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group half-width">
+                            <label for="word_count">Approximate Word Count</label>
+                            <input type="number" id="word_count" name="word_count" value="400" min="50" max="2000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="keywords">Keywords (comma separated)</label>
+                        <input type="text" id="keywords" name="keywords" placeholder="e.g., machine learning, future, tech">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="btn-generate" class="primary-btn">Generate Content</button>
+                        <button type="button" id="btn-keyword" class="secondary-btn">Keyword Focus</button>
+                    </div>
+                </form>
+
+                <hr class="divider">
+
+                <h2>Summarize Text</h2>
+                <form id="summarize-form" class="mt-4">
+                    <div class="form-group">
+                        <label for="source_text">Text to Summarize</label>
+                        <textarea id="source_text" name="source_text" rows="4" placeholder="Paste your long-form text here..."></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="max_length">Summary Length (Words)</label>
+                            <input type="number" id="max_length" name="max_length" value="100" min="10" max="500">
+                        </div>
+                        <div class="form-group half-width" style="display: flex; align-items: flex-end;">
+                            <button type="button" id="btn-summarize" class="primary-btn" style="width: 100%;">Summarize</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section panel">
+                <h2>Generated Result</h2>
+
+                <div id="loading-spinner" class="spinner-container hidden">
+                    <div class="spinner"></div>
+                    <p>AI is thinking...</p>
+                </div>
+
+                <div id="result-container" class="result-box hidden">
+                    <textarea id="result-text" readonly></textarea>
+                    <div class="result-actions">
+                        <button id="btn-copy" class="action-btn">Copy to Clipboard</button>
+                        <span id="copy-feedback" class="feedback-text hidden">Copied!</span>
+                    </div>
+                </div>
+
+                <div id="error-container" class="error-box hidden">
+                    <p id="error-message"></p>
+                </div>
+            </section>
+        </main>
+
+        <!-- History Dashboard -->
+        <section class="history-panel panel">
+            <div class="history-header">
+                <h2>Recent Generation History</h2>
+                <button id="btn-refresh-history" class="icon-btn">↻ Refresh</button>
+            </div>
+            <div class="table-responsive">
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Time</th>
+                            <th>Reference Inputs</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
