@@ -10,12 +10,21 @@ A powerful, full-stack application that leverages advanced AI models to automati
 - **History Tracking**: All generated prompts and results are automatically stored in a `CSV` database using Pandas and easily readable via the UI's History Dashboard.
 - **OpenRouter API**: Agnostically integrates with *OpenRouter's* API model routing to access cutting-edge Language Models dynamically without relying heavily on a single provider endpoint.
 
-## Tech Stack 🛠
+## Tech Stack & Libraries 🛠
 
-- **Backend Framework**: Python (Flask)
-- **AI Integration**: OpenAI Python SDK (Configured for OpenRouter endpoints)
-- **Data Management**: Pandas
-- **Frontend**: HTML5, Vanilla CSS3 (Custom Properties), Vanilla JS (Fetch API)
+### Backend
+- **Python Framework**: `Flask` (Blueprint routing, JSON responses).
+- **AI Integration**: `openai` (Python SDK configured for OpenRouter endpoints).
+- **Data Management**: `pandas` (DataFrame handling, CSV manipulation).
+- **Environment Management**: `python-dotenv` (secure loading of API credentials).
+- **HTTP Methods**:
+  - `POST`: Used for submitting data (prompts, text) securely to `/generate-content`, `/summarize-content`, and `/keyword-content`.
+  - `GET`: Used for retrieving the application interface (`/`) and fetching past generation records (`/history`).
+
+### Frontend
+- **Structure / Logic**: HTML5, Vanilla JavaScript (ES6+ features like `async/await`, Promises).
+- **API Communication**: The JS `fetch()` API is utilized for asynchronous HTTP requests to the backend without page reloads.
+- **Styling**: Vanilla CSS3 using custom properties (CSS variables) for modern theme management.
 
 ## Installation & Setup 🚀
 
