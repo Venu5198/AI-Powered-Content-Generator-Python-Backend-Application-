@@ -66,6 +66,27 @@ python run.py
 
 Navigate to `http://localhost:5000` in your web browser to use the application interface.
 
+### 5. Run with Docker
+Alternatively, you can run this application using Docker. Ensure Docker is installed on your machine.
+
+Build the optimized Docker image:
+```bash
+docker build -t ai-content-generator .
+```
+
+Run the Docker container in the background (passing your `.env` file):
+```bash
+docker run -d -p 5000:5000 --env-file .env ai-content-generator
+```
+
+#### Automated Deployment
+You can also use the included deployment script to automatically rebuild and recycle the container. Simply run:
+```bash
+bash deploy.sh
+```
+
+The application will be available at `http://localhost:5000`. You can stop the container at any time by finding its ID via `docker ps` and running `docker stop <container-id>`.
+
 ## Project Structure 📁
 
 ```text
